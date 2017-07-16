@@ -1,0 +1,250 @@
+<body ng-app='myApp' ng-init="mc.pageload()">
+
+  <nav class="navbar navbar-inverse">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a href="#" class="titleh1">CATER<span class="titleapp">APP</span></a>
+          </div>
+          <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="#!/ordercatering">Home</a></li>
+              <li><a href="#!/ordercatering">Add Order</a></li>
+              <li><a href="#!/email">Email Staff</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+
+      <div ng-app='myApp' class="row">
+
+      <section ng-controller='MainController as mc'>
+<div class="verticalmargin" ng-init="mc.getOrders()">
+<!-- <section ng-controller="MainController as mc"> -->
+<div class="pageheader3 bgblue">
+  <div class="container">
+<h2 class="pageheaderh2">Submit a Catering Order</h2>
+</div>
+</div>
+
+<div id="order-form" class="row">
+  <div class="col-sm-6 col-sm-offset-3 text-center">
+    <form>
+      <div class="form-group">
+        <div class="col-sm-12">
+          <div class="row orderForm">
+            <!-- <h1 class="formtitle">Catering Form</h1> -->
+            <h3 class="formh3">Personal Information</h3>
+      <input type="text" class="form-control input-lg input100" placeholder="First Name" ng-required="{string}" ng-model="mc.firstname">
+      <input type="text" class="form-control input-lg input100" placeholder="Last Name" ng-required="{string}" ng-model="mc.lastname">
+      <!-- <h3>Contact Info</h3> -->
+      <input type="text" class="form-control input-lg input50" placeholder="Phone Number" ng-required="{ string }"  ng-model="mc.phone">
+      <input type="email" class="form-control input-lg input50" placeholder="Email Address" ng-required="{ string }"  ng-model="mc.email">
+      <input type="text" class="form-control input-lg input100" placeholder="Organization" ng-required="{ string }"  ng-model="mc.organization">
+      <!-- <h3>Event Info</h3> -->
+      <h3 class="formh3">Event Details</h3>
+      <input type="number" class="form-control input-lg input100" placeholder="How many people?" ng-required="{ string }"  ng-model="mc.numberofpeople">
+
+      <datepicker date-format="MMMM d, y" button-prev='<i class="fa fa-arrow-circle-left"></i>' button-next='<i class="fa fa-arrow-circle-right"></i>'>
+            <input ng-model="mc.date" type="text" class="font-fontawesome form-control input-lg input100 font-light radius3" placeholder="What's the date of your event?"/>
+          </datepicker>
+      <!-- <datepicker>
+        <input ng-model="date" date-format="M/d/yy" class="form-control input-lg input50" type="text"/>
+      </datepicker> -->
+      <!-- <input type="date" class="form-control input-lg input50" placeholder="mm-dd-yyyy" ng-model="mc.date" /> -->
+             <!-- [name="string"]
+             [min="string"]
+             [max="string"]
+             [ng-min=""]
+             [ng-max=""]
+             [required="string"]
+             [ng-required="string"]
+             [ng-change="string"]> -->
+
+            <!-- <timepicker class="form-control input-lg input100" ng-model="mc.time"></timepicker> -->
+
+            <input type="text" class="form-control input-lg input100" ng-model="mc.time" placeholder="What time is your event?" required ps-input-time />
+             <!-- <input type="time" class="form-control input-lg input100" placeholder="Time of Event"  ng-model="mc.time" /> -->
+       <!-- [name="string"]
+       [min="string"]
+       [max="string"]
+       [ng-min=""]
+       [ng-max=""]
+       [required="string"]
+       [ng-required="string"]
+       [ng-change="string"] -->
+
+      <select label="-- Select option --" class="form-control input-lg input100" ng-model="mc.dorp" placeholder=" Delivery or Pick-up">
+        <option value="" selected disabled><span class="selectlabel">Delivery or Pick-up?</span></option>
+      <option class="form-control input-lg input100" value="Delivery" ng-model="mc.dorpdelivery">I want my catering DELIVERED</option>
+      <option class="form-control input-lg input100" value="Pick-up" ng-model="mc.dorppickup">I want to PICK-UP my catering</option>
+    </select>
+
+
+<h4 ng-show="mc.dorp=='Delivery'" class="dorplabels">Where is your event located?</h4>
+<input class="form-control input-lg input100" ng-model="mc.streetaddress" ng-show="mc.dorp=='Delivery'" placeholder="Street Address" type="text">
+  <input class="form-control input-lg input50" ng-model="mc.city" ng-show="mc.dorp=='Delivery'" placeholder="City" type="text">
+    <input class="form-control input-lg input50" ng-model="mc.zip" ng-show="mc.dorp=='Delivery'" placeholder="Zipcode" type="text">
+
+<h4 ng-show="mc.dorp=='Pick-up'" class="dorplabels">Which location would you like to pick up from?</h4>
+  <div class="pickup-options" ng-show="mc.dorp=='Pick-up'"  ng-model="mc.pickupfrom" placeholder="Delivery or Pick-up?">
+   <label class="pickuplabel input-lg input100"><input type="radio" class="dorp" ng-model="mc.pickupfrommpls" value="Minneapolis">Minneapolis Location at 1111 Main St.</label>
+   <label class="pickuplabel input-lg input100"><input type="radio" class="dorp" ng-model="mc.pickupfromstp" value="Saint Paul">Saint Paul Location at 1111 University Ave.</label>
+ </div>
+
+
+ <h3 class="formh3">Select Your Catering Menu</h3>
+<!-- <p class="dorplabels">What Kind of Catering Would You Like?<br /><span class="foodinfotext">Please select between the 3 types of catering below.</span></p> -->
+<select label="-- Select option --" class="form-control input-lg input100" ng-model="mc.cateringtypes" placeholder="What type of catering would you like?">
+  <option value="" selected disabled><span class="selectlabel">What type of catering would you like?</span></option>
+<option class="form-control input-lg input100" value="Appetizer" ng-model="mc.cateringtypes">Just Appetizer Packages</option>
+<option class="form-control input-lg input100" value="Boxed Lunch" ng-model="mc.cateringtypes">Sandwich or Boxed Lunch Packages</option>
+<option class="form-control input-lg input100" value="Buffet Style" ng-model="mc.cateringtypes">Buffet Style Packages</option>
+</select>
+
+<!-- <h4 ng-show="mc.cateringtypes=='Appetizer'" class="dorplabels">Which Appetizer Option would you like?</h4> -->
+<div class="cateringpackage" ng-show="mc.cateringtypes=='Appetizer'" ng-model="mc.cateringpackage" placeholder="Which Appetizer Option?">
+  <label class="foodradiolabel input-lg input100 radio2"><input type="radio" class="cateringpackage" ng-model="mc.cateringpackage" ng-show="mc.cateringtypes=='Appetizer'" value="Finger Food Simple"><span class="packageoptiontitle">Finger Food Simple- $5.99 per person</span> <br><span class="packageoptions">- Sambusas: Beef, Veggie or Chicken</span><br><span class="packageoptions">- Baklava</span><br><span class="packageoptions">- Somali Tea</span>
+  </label>
+  <div class="simpleoptions" ng-show="mc.cateringpackage=='Finger Food Simple'"  ng-model="mc.simpleoptions" placeholder="Any additional comments?">
+    <input type="text" class="form-control input-lg input100" placeholder="Any additional comments?" ng-required="{string}" ng-model="mc.additionalcomments">
+  </div>
+  <label class="foodradiolabel input-lg input100 radio2"><input type="radio" class="cateringpackage" ng-model="mc.cateringpackage" ng-show="mc.cateringtypes=='Appetizer'" value="Finger Food Sampler"><span class="packageoptiontitle">Finger Food Sampler- $8.99 per person <br><span class="packageoptions">- Sambusas: Beef, Veggie or Chicken</span><br><span class="packageoptions">- Plantains</span><br><span class="packageoptions">- Falafal</span><br><span class="packageoptions">- Shrimp</span><br><span class="packageoptions">- Baklava</span><br><span class="packageoptions">- Somali Tea</span>  </label>
+  <div class="sampleroptions" ng-show="mc.cateringpackage=='Finger Food Sampler'"  ng-model="mc.sampleroptions" placeholder="Any additional comments?">
+    <input type="text" class="form-control input-lg input100" placeholder="Any additional comments?" ng-required="{string}" ng-model="mc.additionalcomments">
+  </div>
+</div>
+
+<div class="cateringpackage" ng-show="mc.cateringtypes=='Boxed Lunch'"  ng-model="mc.cateringpackage" placeholder="Which Boxed Lunch Option?">
+  <label class="foodradiolabel input-lg input100 radio2">
+    <input type="radio" class="cateringpackage" ng-model="mc.cateringpackage" ng-show="mc.cateringtypes=='Boxed Lunch'" value="Gyro Platter">
+    <span class="packageoptiontitle">Gyro Platter- $9.99 per person</span> <br>
+                        <span class="packageoptions">- Afro Green Salad</span><br>
+                          <span class="packageoptions">- Sambusas: Beef, Veggie or Chicken</span><br>
+                          <span class="packageoptions">- Lamb Gyros Sandwich Setup Includes:<br /> <span class="packageoptions2">- Pita Bread</span><br /><span class="packageoptions2">- Tzaziki Sauce</span> <br><span class="packageoptions2">- Onions</span><br><span class="packageoptions2">- Peppers</span></span><br />
+                          <span class="packageoptions">- Baklava</span>
+  </label>
+  <div class="gyroplatteroptions" ng-show="mc.cateringpackage=='Gyro Platter'"  ng-model="mc.cateringpackage" placeholder="Any additional comments?">
+    <input type="text" class="form-control input-lg input100" placeholder="Any additional comments?" ng-required="{string}" ng-model="mc.additionalcomments">
+  </div>
+
+  <label class="foodradiolabel input-lg input100 radio2">
+    <input type="radio" class="cateringpackage" ng-show="mc.cateringtypes=='Boxed Lunch'" ng-model="mc.cateringpackage" value="Chapati Wraps">
+    <span class="packageoptiontitle">Chapati Wraps- $10.99 per person</span> <br>
+                          <span class="packageoptions">- Afro Green Salad</span><br>
+                          <span class="packageoptions">- Sambusas: Beef, Veggie or Chicken</span><br>
+                          <span class="packageoptions">- Chapati Sandwiches: choose between Beef, Chicken, Gyro, Veggie/Falafel<br />
+                            <span class="packageoptions">- Hummus</span><br />
+                            <span class="packageoptions">- Pita Bread</span><br />
+                            <span class="packageoptions">- Baklava</span>
+  </label>
+</div>
+<div class="chapatiwrapoptions" ng-show="mc.cateringpackage=='Chapati Wraps'"  ng-model="mc.cateringpackage" placeholder="Any additional comments?">
+  <input type="text" class="form-control input-lg input100" placeholder="Any additional comments?" ng-required="{string}" ng-model="mc.additionalcomments">
+</div>
+
+
+<div class="cateringpackage" ng-show="mc.cateringtypes=='Buffet Style'" ng-model="mc.cateringpackage" placeholder="Which Buffet Style Option?">
+  <label class="foodradiolabel input-lg input100 radio2">
+  <input type="radio" class="cateringpackage" ng-show="mc.cateringtypes=='Buffet Style'" ng-model="mc.cateringpackage" value="The Hut">
+  <span class="packageoptiontitle">The Hut- $10.99 per person</span> <br>
+                        <span class="packageoptions">- Afro Green Salad</span><br>
+                        <span class="packageoptions">- Sambusas: Beef, Veggie or Chicken</span><br>
+                        <span class="packageoptions">- Somali Rice</span><br>
+                        <span class="packageoptions">- 1 Entree:<br /> <span class="packageoptions2">Choose either Afro Steak Dinner, Chicken Curry, Chicken Fantastic, or Veggie Fantastic.</span><br />
+                          <span class="packageoptions">- Baklava</span>
+                        </label>
+                        <div class="thehutoptions" ng-show="mc.cateringpackage=='The Hut'"  ng-model="mc.thehutoptions">
+                          <select label="-- Select option --" class="form-control input-lg input100" ng-model="mc.hutentree" placeholder="What entree would you like?">
+                            <option value="" selected disabled><span class="selectlabel">What entree would you like?</span></option>
+                          <option class="form-control input-lg input100" value="Afro Steak Dinner" ng-model="mc.entreeselection">Afro Steak Dinner</option>
+                          <option class="form-control input-lg input100" value="Chicken Curry" ng-model="mc.entreeselection">Chicken Curry</option>
+                          <option class="form-control input-lg input100" value="Chicken Fantastic" ng-model="mc.entreeselection">Chicken Fantastic</option>
+                          <option class="form-control input-lg input100" value="Veggie Fantastic" ng-model="mc.entreeselection">Veggie Fantastic</option>
+                          </select>
+                          <input type="text" class="form-control input-lg input100" placeholder="Any additional comments?" ng-model="mc.additionalcomments">
+                        </div>
+
+    <label class="foodradiolabel input-lg input100 radio2">
+                        <input type="radio" class="cateringpackage" ng-show="mc.cateringtypes=='Buffet Style'" ng-model="mc.cateringpackage" value="The Baobaob">
+                        <span class="packageoptiontitle">The Baobaob- $11.99 per person</span> <br>
+                                              <span class="packageoptions">- Afro Green Salad</span><br>
+                                              <span class="packageoptions">- Sambusas: Beef, Veggie or Chicken</span><br>
+                                              <span class="packageoptions">- Somali Rice</span><br>
+                                              <span class="packageoptions">- 2 Entrees:<br /> <span class="packageoptions2">Choose either Afro Steak Dinner, Chicken Curry, Chicken Fantastic, or Veggie Fantastic.</span><br />
+                                                <span class="packageoptions">- Baklava</span>
+                                              </label>
+                                              <div class="thebaobaoboptions" ng-show="mc.cateringpackage=='The Baobaob'"  ng-model="mc.thebaobaoboptions">
+                                                  <select label="-- Select option --" class="form-control input-lg input100" ng-model="mc.baobaobentrees" placeholder="What entrees would you like first?">
+                                                    <option value="" selected disabled><span class="selectlabel">What would you like as your first entree?</span></option>
+                                                  <option class="form-control input-lg input100" value="Afro Steak Dinner" ng-model="mc.entreeselection">Afro Steak Dinner</option>
+                                                  <option class="form-control input-lg input100" value="Chicken Curry" ng-model="mc.entreeselection">Chicken Curry</option>
+                                                  <option class="form-control input-lg input100" value="Chicken Fantastic" ng-model="mc.entreeselection">Chicken Fantastic</option>
+                                                  <option class="form-control input-lg input100" value="Veggie Fantastic" ng-model="mc.entreeselection">Veggie Fantastic</option>
+                                                  </select>
+                                                  <select label="-- Select option --" class="form-control input-lg input100" ng-model="mc.baobaobentrees2" placeholder="What entrees would you like second?">
+                                                    <option value="" selected disabled><span class="selectlabel">What would you like as your second entree?</span></option>
+                                                  <option class="form-control input-lg input100" value="Afro Steak Dinner" ng-model="mc.entreeselection2">Afro Steak Dinner</option>
+                                                  <option class="form-control input-lg input100" value="Chicken Curry" ng-model="mc.entreeselection2">Chicken Curry</option>
+                                                  <option class="form-control input-lg input100" value="Chicken Fantastic" ng-model="mc.entreeselection2">Chicken Fantastic</option>
+                                                  <option class="form-control input-lg input100" value="Veggie Fantastic" ng-model="mc.entreeselection2">Veggie Fantastic</option>
+                                                  </select>
+                                                  <input type="text" class="form-control input-lg input100" placeholder="Any additional comments?" ng-required="{string}" ng-model="mc.additionalcomments">
+                                                </div>
+
+  <label class="foodradiolabel input-lg input100 radio2">
+                                          <input type="radio" class="cateringpackage" ng-show="mc.cateringtypes=='Buffet Style'" ng-model="mc.cateringpackage" value="The Village ">
+                                              <span class="packageoptiontitle">The Village- $12.99 per person</span> <br>
+                                                                    <span class="packageoptions">- Afro Green Salad</span><br>
+                                                                    <span class="packageoptions">- Sambusas: Beef, Veggie or Chicken</span><br>
+                                                                    <span class="packageoptions">- Somali Rice</span><br>
+                                                                    <span class="packageoptions">- 3 Entrees:<br /> <span class="packageoptions2">Choose either Afro Steak Dinner, Chicken Curry, Chicken Fantastic, or Veggie Fantastic.</span><br />
+                                                                      <span class="packageoptions">- Baklava</span>
+                                                                    </label>
+                                                                    <div class="thebaobaoboptions" ng-show="mc.cateringpackage=='Gyro Platter'"  ng-model="mc.cateringpackage" placeholder="Any additional comments?">
+                                                                      <input type="text" class="form-control input-lg input100" placeholder="Any additional comments?" ng-required="{string}" ng-model="mc.thebaobaobcomments">
+                                                                    </div>
+                                                                    <div class="thevillageoptions" ng-show="mc.cateringpackage=='The Village'"  ng-model="mc.thevillageoptions">
+                                                                        <select label="-- Select option --" class="form-control input-lg input100" ng-model="mc.villageentrees" placeholder="What entrees would you like first?">
+                                                                          <option value="" selected disabled><span class="selectlabel">What would you like as your first entree?</span></option>
+                                                                        <option class="form-control input-lg input100" value="Afro Steak Dinner" ng-model="mc.entreeselection">Afro Steak Dinner</option>
+                                                                        <option class="form-control input-lg input100" value="Chicken Curry" ng-model="mc.entreeselection">Chicken Curry</option>
+                                                                        <option class="form-control input-lg input100" value="Chicken Fantastic" ng-model="mc.entreeselection">Chicken Fantastic</option>
+                                                                        <option class="form-control input-lg input100" value="Veggie Fantastic" ng-model="mc.entreeselection">Veggie Fantastic</option>
+                                                                        </select>
+                                                                        <select label="-- Select option --" class="form-control input-lg input100" ng-model="mc.villageentrees2" placeholder="What entrees would you like second?">
+                                                                          <option value="" selected disabled><span class="selectlabel">What would you like as your second entree?</span></option>
+                                                                        <option class="form-control input-lg input100" value="Afro Steak Dinner" ng-model="mc.entreeselection2">Afro Steak Dinner</option>
+                                                                        <option class="form-control input-lg input100" value="Chicken Curry" ng-model="mc.entreeselection2">Chicken Curry</option>
+                                                                        <option class="form-control input-lg input100" value="Chicken Fantastic" ng-model="mc.entreeselection2">Chicken Fantastic</option>
+                                                                        <option class="form-control input-lg input100" value="Veggie Fantastic" ng-model="mc.entreeselection2">Veggie Fantastic</option>
+                                                                        </select>
+                                                                        <select label="-- Select option --" class="form-control input-lg input100" ng-model="mc.villageentrees3" placeholder="What entrees would you like third?">
+                                                                          <option value="" selected disabled><span class="selectlabel">What would you like as your third entree?</span></option>
+                                                                        <option class="form-control input-lg input100" value="Afro Steak Dinner" ng-model="mc.entreeselection3">Afro Steak Dinner</option>
+                                                                        <option class="form-control input-lg input100" value="Chicken Curry" ng-model="mc.entreeselection3">Chicken Curry</option>
+                                                                        <option class="form-control input-lg input100" value="Chicken Fantastic" ng-model="mc.entreeselection3">Chicken Fantastic</option>
+                                                                        <option class="form-control input-lg input100" value="Veggie Fantastic" ng-model="mc.entreeselection3">Veggie Fantastic</option>
+                                                                        </select>
+                                                                        <input type="text" class="form-control input-lg input100" placeholder="Any additional comments?" ng-required="{string}" ng-model="mc.additionalcomments">
+                                                                      </div>
+                                                                    </div>
+
+
+
+<hr>
+    <div>
+      <button type="submit" class="btn btn-primary btn-lg orderButton btn-block submitButton"  ng-disabled="userForm.$invalid" ng-click="mc.addOrder()">Submit Order</button>
+    </form>
+  </div>
+</div>
+
+  <!-- </section> -->
+</section>
+  </div>
+  </body>

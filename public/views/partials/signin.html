@@ -1,0 +1,102 @@
+<body ng-app='myApp' ng-init="mc.pageload()">
+
+
+      <div ng-app='myApp' class="row">
+
+      <section ng-controller='MainController as mc'>
+
+<div class="getOrders verticalmargin">
+  <!-- ng-init="mc.getOrders()" -->
+  <!-- <div class="pageheader">
+    <div class="container">
+  <h2 class="pageheader">Welcome</h2>
+</div>
+</div> -->
+<!-- <div class="jumbotron">
+  <div class="container">
+
+  <h1>Hello, world!</h1>
+  <p>...</p>
+  <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+</div>
+</div> -->
+
+<div class="mainbody">
+  <div class="container">
+      <div id="" class="row">
+        <div class="col-sm-8 col-sm-offset-2 text-center">
+        <!-- <section ng-controller='MainController as mc'> -->
+
+  <!-- login -->
+  <div ng-hide="mc.registeredUser">
+
+    <div ng-hide="mc.loggingIn">
+      <div class="col-sm-8 col-sm-offset-2 text-center">
+
+      <h1 class="hometitle">Log In</h1>
+      <div class="homepage">
+      <form ng-submit="mc.logIn()" class="">
+        <input ng-model='mc.usernameInput' class="form-control input-lg input100" type="text" name="" value="" placeholder="Username">
+        <input ng-model='mc.passwordInput' class="form-control input-lg input100" type="password" name="" value="" placeholder="Password">
+        <button class = "btn btn-primary btn-lg orderButton btn-block " ng-click="mc.logIn()" type="button" name="button">Login</button>
+        <p>Don't have a login? <button type="button" name="button" class="btn greybtn" ng-click="mc.toggleLogin()">Register here!</button></p>
+      </form>
+    </div>
+  </div>
+  </div>
+
+  <!-- register -->
+    <div ng-show="mc.loggingIn">
+      <div class="col-sm-8 col-sm-offset-2 text-center">
+
+      <h1 class="hometitle">Register</h1>
+      <div class="homepage">
+      <form ng-submit="mc.register()" class="">
+        <input ng-model='mc.nameRegister' class="form-control input-lg input100"  type="text" name="" value="" placeholder="Name">
+        <input ng-model='mc.emailRegister' class="form-control input-lg input100"  type="text" name="" value="" placeholder="Email">
+        <input ng-model='mc.usernameRegister' class="form-control input-lg input100"  type="text" name="" value="" placeholder="Username">
+        <input ng-model='mc.passwordRegister' class="form-control input-lg input100"  type="password" name="" value="" placeholder="Password">
+        <button ng-click="mc.register()" type="button" name="button" class = "btn btn-primary btn-lg orderButton btn-block ">Register</button>
+        <p>Already registered? <button type="button" name="button" class="btn btn-primary buttonToLoginPage" ng-click="mc.toggleLogin()">Login here!</button></p>
+      </form>
+    </div>
+  </div>
+  </div>
+
+
+
+  </div>
+
+  <!-- after login -->
+  <div ng-show="mc.registeredUser">
+    <div class="homebox">
+
+    <h1 class="h1home">Welcome {{mc.name}}</h1>
+    <h3 class="h3home">What would you like to do?</h3>
+
+    <div class="btn-group btn-group-justified">
+     <a class="btn btn-info hbutton hblue" role="button" ng-click="mc.gotoaddOrder()">Add a New Order</a>
+   </div>
+    <div class="btn-group btn-group-justified">
+     <a class="btn btn-primary hbutton hpurple" role="button" ng-click="mc.gotoWorkflow()">View Current Work</a>
+     <a class="btn btn-primary hbutton hgreen" role="button" ng-click="mc.gotoCustomers()">View All Customers</a>
+     <a class="btn btn-primary hbutton horange" role="button" ng-click="mc.gotoOrders()">View All Orders</a>
+</div>
+<!-- <div class="btn-group btn-group-justified">
+ <a class="btn btn-info hbutton" role="button" ng-click="mc.logOut()">Add a New Order</a>
+</div> -->
+<p class="logouthome">Done working? <button type="button" name="button" class="btn btn-primary buttonred" ng-click="mc.logOut()">Logout</button></p>
+
+  </div>
+</div>
+<!-- </section> -->
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+</section>
+  </div>
+  </body>

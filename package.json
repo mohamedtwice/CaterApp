@@ -1,0 +1,37 @@
+{
+  "name": "caterapp",
+  "version": "2.5.0",
+  "description": "A simple application to keep track of catering orders.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Mohamed H. Mohamed",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.6.5",
+    "angular-route": "^1.6.5",
+    "angular-save-html-to-pdf": "^1.3.2",
+    "angular-ui-bootstrap": "^2.5.0",
+    "angularjs-datepicker": "^2.1.23",
+    "bcrypt": "^1.0.2",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "mongoose": "^4.11.1",
+    "nodemailer": "^4.0.1",
+    "pdfmake": "^0.1.31",
+    "pg": "^6.4.0",
+    "ps-input-time": "^0.2.2",
+    "ui-bootstrap": "^0.1.10"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mohamedtwice/cater-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mohamedtwice/cater-app/issues"
+  },
+  "homepage": "https://github.com/mohamedtwice/cater-app#readme"
+}

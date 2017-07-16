@@ -1,0 +1,52 @@
+<body ng-app='myApp' ng-init="mc.pageload()">
+
+<nav class="navbar navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="#" class="titleh1">CATER<span class="titleapp">APP</span></a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#!/ordercatering">Home</a></li>
+            <li><a href="#!/ordercatering">Add Order</a></li>
+            <li><a href="#!/email">Email Staff</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+      <div ng-app='myApp' class="row">
+        <section ng-controller='MainController as mc'>
+    <!-- <section ng-controller="MainController as mc"> -->
+    <div class="pageheader3 bgblue">
+    <div class="container">
+    <h2 class="pageheaderh2">Get in Touch with Staff</h2>
+    </div>
+    </div>
+
+    <div id="order-form" class="row">
+    <div class="col-sm-6 col-sm-offset-3 text-center">
+      <form novalidate ng-submit="mailer.submitForm(mailer.mailObject)">
+            Send Email To:<br>
+            <input type="text" ng-model="mailer.mailObject.toEmail"><br>
+            Subject:<br>
+            <input type="text" ng-model="mailer.mailObject.subject"><br>
+            Message:<br>
+            <input type="text" ng-model="mailer.mailObject.message"><br>
+            <button>Submit</button><br>
+            <br>
+          </form>
+</div>
+</div>
+
+    <!-- </section> -->
+  </section>
+    </div>
+
+</body>

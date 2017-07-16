@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>CaterAPP</title>
+  <link rel="stylesheet" href="vendors/bootstrap.min.css">
+  <link rel="stylesheet" href="styles/styles.css">
+  <script src="vendors/angular.min.js" charset="utf-8"></script>
+  <script src="vendors/angular-route.min.js" charset="utf-8"></script>
+  <script src="scripts/orders.js" charset="utf-8"></script>
+  <script src="scripts/services/allOrdersService.js" charset="utf-8"></script>
+  <script src="scripts/services/addOrderService.js" charset="utf-8"></script>
+  <script src="vendors/ps-input-time.js"></script>
+  <script src="vendors/angular-datepicker.js"></script>
+  <link rel="stylesheet" href="vendors/angular-datepicker.css">
+  <script src='vendors/pdfmake.min.js'></script>
+<script src="vendors/html2canvas.js" charset="utf-8"></script>
+ 	<script src='vendors/vfs_fonts.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"> </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
+  <script src='vendors/saveHtmlToPdf.js'></script>
+  <script src='vendors/xeditable.min.js'></script>
+  <script src='vendors/ui-bootstrap-tpls.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.3.1/ui-bootstrap-tpls.min.js"></script>
+  <link rel="stylesheet" href="vendors/xeditable.min.css">
+
+</head>
+<body ng-app='myApp'>
+
+<!-- ng-init="mc.getOrders()" -->
+        <ng-view>
+
+        </ng-view>
+
+
+</body>
+</html>

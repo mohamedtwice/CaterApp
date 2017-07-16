@@ -1,0 +1,194 @@
+<body ng-app='myApp' ng-init="mc.pageload()">
+
+<div ng-hide="mc.name==Mohamed">
+
+  <nav class="navbar navbar-inverse">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a href="#" class="titleh1">CATER<span class="titleapp">APP</span></a>
+          </div>
+          <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="#">Home</a></li>
+              <li><a href="#!/order">Add Order</a></li>
+              <li><a href="#!/workflow">Contact Staff</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+
+    </div>
+
+      <div ng-show="mc.name==Mohamed">
+        <nav class="navbar navbar-inverse">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a href="#" class="titleh1">CATER<span class="titleapp">APP</span></a>
+          </div>
+          <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="#">Home</a></li>
+              <li><a href="#!/order">Add Order</a></li>
+              <li><a href="#!/workflow">Workflow</a></li>
+              <li><a href="#!/customers">View Customers</a></li>
+              <li><a href="#!/allorders">View All Orders</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+
+      <div ng-app='myApp' class="row">
+
+      <section ng-controller='MainController as mc'>
+
+<div class="getOrders verticalmargin" ng-init="mc.getOrders()">
+  <div class="pageheader3">
+    <div class="container">
+  <h2 class="pageheaderh2">All Catering Orders</h2>
+</div>
+</div>
+
+  <div class="container">
+          <div  id="exportthis" class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+              <div id="single-view" class="row">
+                <div class="backbuttondiv">
+                   <button ng-click="mc.downloadPdf()" class="button printbutton">Print</button> <button type="button" name="button" class="backbutton" ng-click="mc.switchbtn()">BACK TO ORDERS</button>
+                </div>
+
+
+              <div class="contacteventinfo">
+              <div class="col-sm-6">
+                <h3 class="invoiceh3">Customer Information</h3>
+                <p>Name: <b>{{mc.singleOrder.firstname}} {{mc.singleOrder.lastname}}</b></p>
+                <p>Phone: <b>{{mc.singleOrder.phone}}</b></p>
+                  <p>Email: <b>{{mc.singleOrder.email}}</b></p>
+                <p>Organization: <b>{{mc.singleOrder.organization}}</b></p>
+              </div>
+
+                <div class="col-sm-6">
+                  <h3 class="invoiceh3">Catering Information</h3>
+                  <p>Date: <b>{{mc.singleOrder.date | date:"MM/dd/yyyy" }}</b></p>
+                  <p>Time: <b>{{mc.singleOrder.time | date:"h:mma"}}</b></p>
+                    <p>Pickup or Delivery: <b>{{mc.singleOrder.dorp}}</b></p>
+                    <p class="" ng-show="mc.singleOrder.dorp=='Pick-up'">Picking up from <b>{{mc.singleOrder.pickupfrom}}</b> Location</p>
+                    <p class="" ng-show="mc.singleOrder.dorp=='Delivery'"><span class="todelivery">to</span> <b>{{mc.singleOrder.streetaddress}}.  {{mc.singleOrder.city}}, MN {{mc.singleOrder.zip}}</b></p>
+                </div>
+                <hr>
+              </div>
+
+<div class="orderinfodiv">
+<div class="col-sm-12 orderinfo">
+      		<div class="panel panel-default">
+      			<div class="panel-heading">
+      				<h3 class="panel-title"><strong>Catering Order Summary</strong></h3>
+      			</div>
+      			<div class="panel-body">
+      				<div class="table-responsive">
+      					<table class="table table-condensed">
+      						<thead>
+                                  <tr>
+                                    <td><strong>Type</strong></td>
+                                    <td><strong>Package</strong></td>
+                        <td class="text-center"><strong># of People</strong></td>
+          							<td class="text-center"><strong>Price per Person</strong></td>
+          							<td class="text-right"><strong>Total </strong></td>
+                                  </tr>
+      						</thead>
+      						<tbody>
+      							<!-- foreach ($order->lineItems as $line) or some such thing here -->
+      							<tr>
+                      <td class="topinvoiceinfo">{{mc.singleOrder.cateringtypes}}</td>
+                      <td class="topinvoiceinfo">{{mc.singleOrder.cateringpackage}}</td>
+                      <td class="text-center topinvoiceinfo">{{mc.singleOrder.numberofpeople}}</td>
+      								<td class="text-center topinvoiceinfo" ng-model='packageprice'><span ng-show="mc.singleOrder.cateringpackage=='Finger Food Simple'" ng-value="5.99">$5.99</span><span ng-show="mc.singleOrder.cateringpackage=='Finger Food Sampler'" ng-value="8.99">$8.99</span><span ng-show="mc.singleOrder.cateringpackage=='Gyro Platter'" ng-value="9.99">$9.99</span>
+                        <span ng-show="mc.singleOrder.cateringpackage=='Chapati Wraps'" ng-value="10.99">$10.99</span><span ng-show="mc.singleOrder.cateringpackage=='The Hut'" ng-value="10.99">$10.99</span><span ng-show="mc.singleOrder.cateringpackage=='The Baobaob'" ng-value="11.99">$11.99</span><span ng-show="mc.singleOrder.cateringpackage=='The Village'" ng-value="12.99">$12.99</span></td>
+      								<td class="text-right topinvoiceinfo"><span ng-show="mc.singleOrder.cateringpackage=='Finger Food Simple'" ng-value="5.99">{{mc.singleOrder.numberofpeople * 5.99 | currency: currencySymbol}}</span><span ng-show="mc.singleOrder.cateringpackage=='Finger Food Sampler'" ng-value="8.99">{{mc.singleOrder.numberofpeople * 8.99 | currency: currencySymbol}}</span><span ng-show="mc.singleOrder.cateringpackage=='Gyro Platter'" ng-value="9.99">{{mc.singleOrder.numberofpeople * 9.99 | currency: currencySymbol}}</span><span ng-show="mc.singleOrder.cateringpackage=='Chapati Wraps'" ng-value="10.99">{{mc.singleOrder.numberofpeople * 10.99 | currency: currencySymbol}}</span><span ng-show="mc.singleOrder.cateringpackage=='The Hut'" ng-value="10.99">{{mc.singleOrder.numberofpeople * 10.99 | currency: currencySymbol}}</span><span ng-show="mc.singleOrder.cateringpackage=='The Baobaob'" ng-value="11.99">{{mc.singleOrder.numberofpeople * 11.99 | currency: currencySymbol}}</span><span ng-show="mc.singleOrder.cateringpackage=='The Village'" ng-value="12.99">{{mc.singleOrder.numberofpeople * 12.99 | currency: currencySymbol}}</span></td>
+      							</tr>
+
+                    <tr>
+      								<td class="thick-line"></td>
+                      <td class="thick-line"><span class="bottominvoiceinfo" ng-show="mc.singleOrder.cateringpackage=='Finger Food Simple'">Sambusas: Beef, Veggie or Chicken</span><span class="bottominvoiceinfo" ng-show="mc.singleOrder.cateringpackage=='Finger Food Sampler'">Afro Green Salad</span><span class="bottominvoiceinfo" ng-show="mc.singleOrder.cateringpackage=='Gyro Platter'">Afro Green Salad</span><span class="bottominvoiceinfo" ng-show="mc.singleOrder.cateringpackage=='Chapati Wraps'">Afro Green Salad</span><span class="bottominvoiceinfo" ng-show="mc.singleOrder.cateringpackage=='The Hut'">Afro Green Salad</span><span class="bottominvoiceinfo" ng-show="mc.singleOrder.cateringpackage=='The Baobaob'">Afro Green Salad</span><span class="bottominvoiceinfo" ng-show="mc.singleOrder.cateringpackage=='The Village'">Afro Green Salad</span></td>
+                      <td class="thick-line"></td>
+      								<td class="thick-line"></td>
+      								<td class="thick-line"></td>
+      							</tr>
+                    <tr>
+                      <td class="thick-line"></td>
+                      <td class="thick-line"><span class="bottominvoiceinfo" ng-show="mc.singleOrder.cateringpackage=='Finger Food Simple'">Baklava</span><span class="bottominvoiceinfo" ng-show="mc.singleOrder.cateringpackage=='Finger Food Sampler'">Plantains</span><span class="bottominvoiceinfo" ng-show="mc.singleOrder.cateringpackage=='Gyro Platter'">Sambusas: Beef, Veggie or Chicken</span><span class="bottominvoiceinfo" ng-show="mc.singleOrder.cateringpackage=='Chapati Wraps'">Sambusas: Beef, Veggie or Chicken</span><span class="bottominvoiceinfo" ng-show="mc.singleOrder.cateringpackage=='The Hut'">Sambusas: Beef, Veggie or Chicken</span><span class="bottominvoiceinfo" ng-show="mc.singleOrder.cateringpackage=='The Baobaob'">Sambusas: Beef, Veggie or Chicken</span><span class="bottominvoiceinfo" ng-show="mc.singleOrder.cateringpackage=='The Village'">Sambusas: Beef, Veggie or Chicken</span></td>
+                      <td class="thick-line"></td>
+                      <td class="thick-line"></td>
+                      <td class="thick-line"></td>
+                    </tr>
+                    <tr>
+                      <td class="thick-line"></td>
+                      <td class="thick-line"><span class="bottominvoiceinfo" ng-show="mc.singleOrder.cateringpackage=='Finger Food Simple'">Somali Tea</span><span class="bottominvoiceinfo" ng-show="mc.singleOrder.cateringpackage=='Finger Food Sampler'">Falafel</span><span class="bottominvoiceinfo" ng-show="mc.singleOrder.cateringpackage=='Gyro Platter'">Pita Bread & Lamb Gyros</span><span class="bottominvoiceinfo" ng-show="mc.singleOrder.cateringpackage=='Chapati Wraps'">Chapati Wraps<br />Mix of Beef, Chicken, Gyro, Veggie, and Falafel</span><span class="bottominvoiceinfo" ng-show="mc.singleOrder.cateringpackage=='The Hut'">Somali Rice</span><span class="bottominvoiceinfo" ng-show="mc.singleOrder.cateringpackage=='The Baobaob'">Somali Rice</span><span class="bottominvoiceinfo" ng-show="mc.singleOrder.cateringpackage=='The Village'">Somali Rice</span></td>
+                      <td class="thick-line"></td>
+                      <td class="thick-line"></td>
+                      <td class="thick-line"></td>
+                    </tr>
+      							<tr>
+      								<td class="thick-line"></td>
+                      <td class="thick-line"><span class="bottominvoiceinfo" ng-show="mc.singleOrder.cateringpackage=='Finger Food Sampler'">Shrimp</span><span class="bottominvoiceinfo" ng-show="mc.singleOrder.cateringpackage=='Gyro Platter'">Sandwich Setup with Tzaziki Sauce, Onions, Peppers</span><span class="bottominvoiceinfo" ng-show="mc.singleOrder.cateringpackage=='Chapati Wraps'">Hummus & Pita Bread</span><span class="bottominvoiceinfo" ng-show="mc.singleOrder.cateringpackage=='The Hut'">1 Entree: {{mc.singleOrder.entree1}}</span><span class="bottominvoiceinfo" ng-show="mc.singleOrder.cateringpackage=='The Baobaob'">2 Entrees: {{mc.singleOrder.entree1}} and {{mc.singleOrder.entree2}}</span><span class="bottominvoiceinfo" ng-show="mc.singleOrder.cateringpackage=='The Village'">3 Entrees: {{mc.singleOrder.entree1}}, {{mc.singleOrder.entree2}}, and {{mc.singleOrder.entree3}}</span></td>
+                      <td class="thick-line"></td>
+      								<td class="thick-line"></td>
+      								<td class="thick-line"></td>
+      							</tr>
+      							<tr>
+      								<td class="no-line"></td>
+                      <td class="no-line"><span class="bottominvoiceinfo" ng-show="mc.singleOrder.cateringpackage=='Finger Food Sampler'">Baklava & Somali Tea</span><span class="bottominvoiceinfo" ng-show="mc.singleOrder.cateringpackage=='Gyro Platter'">Baklava</span><span class="bottominvoiceinfo" ng-show="mc.singleOrder.cateringpackage=='Chapati Wraps'">Baklava</span><span class="bottominvoiceinfo" ng-show="mc.singleOrder.cateringpackage=='The Hut'">Baklava</span><span class="bottominvoiceinfo" ng-show="mc.singleOrder.cateringpackage=='The Baobaob'">Baklava</span><span class="bottominvoiceinfo" ng-show="mc.singleOrder.cateringpackage=='The Village'">Hummus & Pita, Falafel, and Baklava</span></td>
+                      <td class="no-line"></td>
+                      <td class="no-line text-center"><span ng-show="mc.singleOrder.dorp=='Delivery'"><strong>Delivery</strong></span></td>
+      								<td class="no-line text-right"><span ng-show="mc.singleOrder.dorp=='Delivery'">$15</span></td>
+      							</tr>
+      							<tr>
+      								<td class="no-line text-right bottominvoiceinfo"></td>
+                      <td class="no-line bottominvoiceinfo"><b>Comments:</b> {{mc.singleOrder.additionalcomments}}</td>
+                      <td class="no-line"></td>
+                      <td class="no-line text-center"><span ng-show="mc.singleOrder.dorp=='Delivery'"><strong>Tax</strong></span></td>
+<td class="text-right topinvoiceinfo"><span ng-show="mc.singleOrder.cateringpackage=='Finger Food Simple'" ng-value="5.99">{{(mc.singleOrder.numberofpeople * 5.99) * .065 | currency: currencySymbol}}</span><span ng-show="mc.singleOrder.cateringpackage=='Finger Food Sampler'" ng-value="8.99">{{(mc.singleOrder.numberofpeople * 8.99) * .065 | currency: currencySymbol}}</span><span ng-show="mc.singleOrder.cateringpackage=='Gyro Platter'" ng-value="9.99">{{(mc.singleOrder.numberofpeople * 9.99) * .065 | currency: currencySymbol}}</span><span ng-show="mc.singleOrder.cateringpackage=='Chapati Wraps'" ng-value="10.99">{{(mc.singleOrder.numberofpeople * 10.99) * .065 | currency: currencySymbol}}</span><span ng-show="mc.singleOrder.cateringpackage=='The Hut'" ng-value="10.99">{{(mc.singleOrder.numberofpeople * 10.99) * .065 | currency: currencySymbol}}</span><span ng-show="mc.singleOrder.cateringpackage=='The Baobaob'" ng-value="11.99">{{(mc.singleOrder.numberofpeople * 11.99) * .065 | currency: currencySymbol}}</span><span ng-show="mc.singleOrder.cateringpackage=='The Village'" ng-value="12.99">{{(mc.singleOrder.numberofpeople * 12.99) * .065 | currency: currencySymbol}}</span></td>
+</tr>
+                    <tr>
+                      <td class="no-line text-right bottominvoiceinfo"></td>
+                      <td class="no-line bottominvoiceinfo"></td>
+                      <td class="no-line"></td>
+                      <td class="no-line text-center"><strong>Total</strong></td>
+<td class="text-right topinvoiceinfo"><span ng-show="mc.singleOrder.cateringpackage=='Finger Food Simple'" ng-value="5.99">{{ 15 + (mc.singleOrder.numberofpeople * 5.99) + ((mc.singleOrder.numberofpeople * 5.99) * .065) | currency: currencySymbol }}</span><span ng-show="mc.singleOrder.cateringpackage=='Finger Food Sampler'" ng-value="8.99">{{ 15 + (mc.singleOrder.numberofpeople * 8.99) + ((mc.singleOrder.numberofpeople * 8.99) * .065) }} </span><span ng-show="mc.singleOrder.cateringpackage=='Gyro Platter'" ng-value="9.99">{{ 15 + (mc.singleOrder.numberofpeople * 9.99) + ((mc.singleOrder.numberofpeople * 9.99) * .065) }} </span><span ng-show="mc.singleOrder.cateringpackage=='Chapati Wraps'" ng-value="10.99">{{ 15 + (mc.singleOrder.numberofpeople * 10.99) + ((mc.singleOrder.numberofpeople * 10.99) * .065) }} </span><span ng-show="mc.singleOrder.cateringpackage=='The Hut'" ng-value="10.99">{{ 15 + (mc.singleOrder.numberofpeople * 10.99) + ((mc.singleOrder.numberofpeople * 10.99) * .065) }}</span><span ng-show="mc.singleOrder.cateringpackage=='The Baobaob'" ng-value="11.99">{{ 15 + (mc.singleOrder.numberofpeople * 11.99) + ((mc.singleOrder.numberofpeople * 11.99) * .065) }}</span><span ng-show="mc.singleOrder.cateringpackage=='The Village'" ng-value="12.99">{{ 15 + (mc.singleOrder.numberofpeople * 12.99) + ((mc.singleOrder.numberofpeople * 12.99) * .065) }}</span></td>
+</tr>
+      						</tbody>
+      					</table>
+      				</div>
+      			</div>
+      		</div>
+      	</div>
+      </div>
+
+
+
+
+            </div>
+          </div>
+
+
+
+
+    </div>
+  </div>
+</div>
+
+</section>
+  </div>
+  </div>
+  </body>

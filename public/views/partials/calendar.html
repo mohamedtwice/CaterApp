@@ -1,0 +1,42 @@
+
+  <nav class="navbar navbar-inverse">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a href="#" class="titleh1">CATER<span class="titleapp">APP</span></a>
+          </div>
+          <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="#">Home</a></li>
+              <li><a href="#!/order">Add Order</a></li>
+              <li><a href="#!/workflow">Workflow</a></li>
+              <li><a href="#!/customers">View Customers</a></li>
+              <li><a href="#!/allorders">View All Orders</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+
+      <div ng-app='myApp' class="row">
+
+<section ng-controller='MainController as mc'>
+
+<div class="" ng-init="mc.getOrders()">
+<div class="pageheader">
+  <div class="container">
+<h2 class="pageheaderh2">Calendar</h2>
+</div>
+</div>
+
+
+<easy-calendar ez-events="events"> </easy-calendar>
+
+</div>
+
+</section>
+  </div>
