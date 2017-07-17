@@ -69,39 +69,29 @@
 
   <!-- after login -->
   <div ng-show="mc.registeredUser" ng-init="mc.pageload()">
+    <div class="homebox">
 
-    <div ng-hide="mc.name==Mohamed">
-      <div class="homebox">
-      <h1 class="h1home">Welcome {{mc.name}}</h1>
-      <h3 class="h3home">What would you like to do?</h3>
-      <div class="btn-group btn-group-justified">
-       <a class="btn btn-info hbutton hblue" role="button" href="#!/order">Add New Order</a>
-       <a class="btn btn-primary hbutton hpurple" role="button" href="#!/email">Email Staff</a>
-      </div>
-    </div>
+    <h1 class="h1home">Welcome {{mc.name}}</h1>
+    <h3 class="h3home">What would you like to do?</h3>
+
+<p>
+
+{{mc.allOrders.length}}</p>
+
+    <div class="btn-group btn-group-justified">
+     <a class="btn btn-info hbutton hblue" role="button" ng-click="mc.gotoaddOrder()">Add a New Order</a>
+   </div>
+    <div class="btn-group btn-group-justified">
+     <a class="btn btn-primary hbutton hpurple" role="button" ng-click="mc.gotoWorkflow()">View Current Work</a>
+     <a class="btn btn-primary hbutton hgreen" role="button" ng-click="mc.gotoCustomers()">View All Customers</a>
+     <a class="btn btn-primary hbutton horange" role="button" ng-click="mc.gotoOrders()">View All Orders</a>
+</div>
+<!-- <div class="btn-group btn-group-justified">
+ <a class="btn btn-info hbutton" role="button" ng-click="mc.logOut()">Add a New Order</a>
+</div> -->
+<p class="logouthome">Done working? <button type="button" name="button" class="btn btn-primary buttonred" ng-click="mc.logOut()">Logout</button></p>
+
   </div>
-
-          <div ng-show="mc.name==Mohamed">
-            <div class="homebox">
-            <h1 class="h1home">Welcome {{mc.name}}</h1>
-            <h3 class="h3home">What would you like to do?</h3>
-            <div class="btn-group btn-group-justified">
-             <a class="btn btn-info hbutton hblue" role="button" ng-click="mc.gotoaddOrder()">Add New Order</a>
-             <a class="btn btn-primary hbutton hpurple" role="button" ng-click="mc.gotoWorkflow()">View WorkFlow</a>
-             <a class="btn btn-primary hbutton hgreen" role="button" ng-click="mc.gotoCustomers()">View Customers</a>
-             <a class="btn btn-primary hbutton horange" role="button" ng-click="mc.gotoOrders()">View All Orders</a>
-            </div>
-
-            <div class="col-sm-8 col-sm-offset-2 text-center">
-              <h1>Current Count of Orders</h1>
-              <span class="ordernumber">{{mc.allOrders.length}}</span>
-            </div>
-            </div>
-          </div>
-
-  
-
-
 </div>
 <!-- </section> -->
 </div>

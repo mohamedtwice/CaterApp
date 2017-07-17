@@ -133,19 +133,21 @@ input[type="radio"], input[type="checkbox"] {
 }
 .homebox {
   padding: 10px;
-  background: #fff;
+  background: #f5f6f7;
   margin-top: 40px;
+  display: inline-block;
 }
 .h1home {
   font-size: 5rem;
   font-weight: 800;
   text-transform: uppercase;
   background: #173e43;
-  padding: 30px;
+  padding: 40px;
   color: #fff;
+  margin: -10px;
 }
 .h3home {
-  font-size: 2.5rem;
+  font-size: 3.0rem;
   margin: 30px;
 }
 .hbutton {
@@ -321,6 +323,22 @@ input[type="radio"], input[type="checkbox"] {
 .buttonred {
   background: #e53935;
   color: #fff;
+}
+.buttonrednav {
+  background: #e53935;
+  color: #fff;
+  padding: 6px 20px;
+  margin: 10px 0;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+.buttonrednav:hover {
+  background: #f5f6f7;
+  color: #e53935;
+  padding: 6px 20px;
+  margin: 10px 0;
+  border-radius: 3px;
+  text-transform: uppercase;
 }
 .hgreen {
   background: #3fb0ac;
@@ -569,6 +587,17 @@ select.input-lg {
 }
 .right-nav {
   float: right;
+}
+.ordernumber {
+  padding: 10px 20px;
+  background: #fff;
+  width: auto;
+  display: inline-block;
+  border-radius: 120px;
+  font-size: 40px;
+  line-height: 40px;
+  font-weight: 900;
+  color: #173e43;
 }
 
 /*.emailpage {

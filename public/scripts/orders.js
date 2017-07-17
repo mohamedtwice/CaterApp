@@ -61,12 +61,7 @@ myApp.controller('MainController', function(allOrdersService, addOrderService, $
 
   vm.pageload = function() {
     vm.getLocalStorage();
-    if (vm.right == 123) {
-      vm.page = 'Load';
-    } else {
-      vm.page = 'Loads';
-    }
-    getOrders();
+    vm.getOrders();
   };
 
   vm.downloadPdf = function() {
@@ -155,27 +150,15 @@ myApp.controller('MainController', function(allOrdersService, addOrderService, $
         // Allows toggle to show user is logged in
         addOrderService.nameIntake(vm.name);
         vm.setLocalStorage();
-        if (vm.name == 'Mohamed') {
-          $location.path('/');
-        } else {
-          $location.path('/ordercatering');
-        }
+        // $location.path('/dashboard');
+
       }); // end allOrdersService
     } //end else
   }; //end login
 
-  vm.getLocalStorage = function() {
-    console.log('in LocalStorageController getLocalStorage');
-    var tempy = localStorage.getItem('userInputTest');
-    console.log('from localStorage:', tempy);
-  }; //end setLocalStorage
-
-  vm.setLocalStorage = function() {
-    console.log('in LocalStorageController setLocalStorage:', vm.name);
-    localStorage.setItem('userInputTest', vm.name + vm.right);
-    vm.usernameInput = '';
-  }; //end setLocalStorage
-
+  vm.signIn = function() {
+    $location.path('/signin');
+  };
 
   //logout
   vm.logOut = function() {
@@ -184,6 +167,8 @@ myApp.controller('MainController', function(allOrdersService, addOrderService, $
     vm.username = '';
     localStorage.removeItem('vm.name');
     localStorage.removeItem('vm.right');
+    $location.path('/');
+
   };
   //end logout
 
@@ -271,6 +256,7 @@ myApp.controller('MainController', function(allOrdersService, addOrderService, $
     allOrdersService.getOrders().then(function(data) {
       vm.allOrders = data;
       console.log(vm.allOrders);
+      console.log(vm.allOrders.length);
     });
   };
 
